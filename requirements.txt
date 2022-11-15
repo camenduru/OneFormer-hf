@@ -26,6 +26,8 @@ ftfy
 regex
 inflect
 diffdist
+gdown
+huggingface_hub
 pytorch_lightning
 tqdm
 gradio==3.1.4
