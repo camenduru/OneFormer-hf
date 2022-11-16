@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 		&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update
-RUN apt-get -y install python3.8
+RUN apt-get -y install python3.8.15
 RUN apt-get -y install python3-pip
 
 RUN useradd -ms /bin/bash admin
@@ -38,6 +38,7 @@ RUN chmod 755 $WORKDIR
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
 
+RUN pip3 install multidict
 RUN pip3 install gradio --no-cache-dir
 RUN pip3 install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
