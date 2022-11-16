@@ -50,6 +50,7 @@ RUN python3.8 -m pip install typing-extensions
 RUN python3.8 -m pip install --upgrade setuptools
 RUN python3.8 -m pip install wheel
 RUN python3.8 -m pip install cython
+RUN python3.8 -m pip install numpy
 RUN python3.8 -m pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
