@@ -10,6 +10,11 @@ RUN apt-get update && apt-get install -y \
     	ffmpeg libsm6 libxext6 cmake libgl1-mesa-glx \
 		&& rm -rf /var/lib/apt/lists/*
 
+RUN add-apt-repository --remove ppa:fkrull/deadsnakes
+RUN apt-get -y update
+RUN apt-get remove -y --purge python3.6
+RUN apt-get remove -y --purge python3
+
 RUN apt-get -y update
 RUN apt install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
