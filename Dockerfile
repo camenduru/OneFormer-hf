@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
 		&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update
+RUN apt install software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get -y install python3.9
 RUN apt-get -y install python3-pip
 
