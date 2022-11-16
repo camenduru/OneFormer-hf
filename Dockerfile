@@ -10,10 +10,6 @@ RUN apt-get update && apt-get install -y \
     	ffmpeg libsm6 libxext6 cmake libgl1-mesa-glx \
 		&& rm -rf /var/lib/apt/lists/*
 
-RUN add-apt-repository --remove ppa:fkrull/deadsnakes
-RUN apt-get -y update
-RUN apt-get remove -y --purge python3.6
-RUN apt-get remove -y --purge python3
 
 RUN apt-get -y update
 RUN apt install -y software-properties-common
@@ -44,7 +40,7 @@ RUN chmod 755 $WORKDIR
 
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
-
+RUN python3 --version
 RUN python3 -m pip install --upgrade pip
 RUN pip3 install multidict
 RUN pip3 install typing-extensions
