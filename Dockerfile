@@ -18,6 +18,7 @@ RUN apt-get -y install python3.8
 RUN apt-get -y install python3-pip
 RUN apt install -y python3.8-distutils
 RUN apt-get install -y gcc
+RUN apt-get install -y python3.8-dev
 
 RUN useradd -ms /bin/bash admin
 USER admin
@@ -50,7 +51,6 @@ RUN python3.8 -m pip install typing-extensions
 RUN python3.8 -m pip install --upgrade setuptools
 RUN python3.8 -m pip install wheel
 RUN python3.8 -m pip install cython
-RUN python3.8 -m pip install git+https://github.com/cocodataset/panopticapi.git
 RUN python3.8 -m pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
