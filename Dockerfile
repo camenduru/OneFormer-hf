@@ -36,10 +36,13 @@ RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
 
-RUN pwd
+RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./
 RUN ls
+RUN cd ops/
+RUN FORCE_CUDA=1 python setup.py build install
+RUN cd ..
 
-RUN sh deform_setup.sh
+# RUN sh deform_setup.sh
 
 # USER user
 
