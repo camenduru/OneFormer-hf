@@ -23,7 +23,6 @@ RUN pyenv install 3.8.15 && \
     pyenv rehash && \
     pip install --no-cache-dir --upgrade pip setuptools wheel
 
-ENV FORCE_CUDA="1"
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
 RUN chown -R user:user $WORKDIR
@@ -38,7 +37,9 @@ COPY . .
 
 RUN sh deform_setup.sh
 
-RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./ && ls && cd ops/ && FORCE_CUDA=1 python TORCH_CUDA_ARCH_LIST=7.5+PTX setup.py build --build-base=$WORKDIR install --user && cd ..
+ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
+
+RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR install --user && cd ..
 
 # USER user
 
