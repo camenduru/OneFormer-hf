@@ -10,4 +10,4 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 # Modified by Bowen Cheng from https://github.com/fundamentalvision/Deformable-DETR
 
-FORCE_CUDA=1 python3 setup.py build install
+FORCE_CUDA=1 python setup.py build install
