@@ -17,6 +17,11 @@ RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
 
+RUN pwd
+RUN ls
+
+COPY oneformer $WORKDIR/oneformer
+
 RUN sh deform_setup.sh
 
 USER admin
