@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 		&& rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update
-RUN apt-get -y install python3.8.15
+RUN apt-get -y install python3.8
 RUN apt-get -y install python3-pip
 
 RUN useradd -ms /bin/bash admin
