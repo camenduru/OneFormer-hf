@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-nvidia-smi
-ln -s ./oneformer/modeling/pixel_decoder/ops/ ./
-ls
-cd ops/ && bash make.sh && cd ..
+# nvidia-smi
+# ln -s ./oneformer/modeling/pixel_decoder/ops/ ./
+# ls
+# cd ops/ && bash make.sh && cd ..
 
 echo '----------------------------------------------------------------'
 echo '----------------------------------------------------------------'
