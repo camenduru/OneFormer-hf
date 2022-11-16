@@ -38,7 +38,7 @@ COPY . .
 ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 
 USER user
-RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build install && cd ..
+RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build install --user && cd ..
 
 RUN sh deform_setup.sh
 
