@@ -38,8 +38,8 @@ RUN chmod 755 $WORKDIR
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
 
-RUN pip install gradio --no-cache-dir
-RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
+RUN pip3 install gradio --no-cache-dir
+RUN pip3 install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
 
