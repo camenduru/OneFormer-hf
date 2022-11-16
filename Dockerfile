@@ -13,15 +13,15 @@ RUN apt-get update && apt-get install -y \
 RUN useradd -ms /bin/bash admin
 USER admin
 
-# ENV HOME=/home/user \
-# 	PATH=/home/user/.local/bin:$PATH
+ENV HOME=/home/user \
+	PATH=/home/user/.local/bin:$PATH
 
-# RUN curl https://pyenv.run | bash
-# ENV PATH=$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH
-# RUN pyenv install 3.8.15 && \
-#     pyenv global 3.8.15 && \
-#     pyenv rehash && \
-#     pip install --no-cache-dir --upgrade pip setuptools wheel
+RUN curl https://pyenv.run | bash
+ENV PATH=$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH
+RUN pyenv install 3.8.15 && \
+    pyenv global 3.8.15 && \
+    pyenv rehash && \
+    pip install --no-cache-dir --upgrade pip setuptools wheel
 
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
