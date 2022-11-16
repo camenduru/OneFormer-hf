@@ -42,12 +42,12 @@ RUN chmod 755 $WORKDIR
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
 RUN python3.8 --version
-RUN python3.8 -m pip install -y --upgrade pip
-RUN python3.8 -m pip install -y multidict
-RUN python3.8 -m pip install -y typing-extensions
-RUN python3.8 -m pip install -y --upgrade setuptools
-RUN python3.8 -m pip install -y gradio --no-cache-dir
-RUN python3.8 -m pip install -y --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
+RUN python3.8 -m pip install --upgrade pip
+RUN python3.8 -m pip install multidict
+RUN python3.8 -m pip install typing-extensions
+RUN python3.8 -m pip install --upgrade setuptools
+RUN python3.8 -m pip install gradio --no-cache-dir
+RUN python3.8 -m pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
 
