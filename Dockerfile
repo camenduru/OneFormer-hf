@@ -17,6 +17,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get -y install python3.8
 RUN apt-get -y install python3-pip
 RUN apt install -y python3.8-distutils
+RUN apt-get install -y gcc
 
 RUN useradd -ms /bin/bash admin
 USER admin
@@ -47,6 +48,7 @@ RUN python3.8 -m pip install multidict
 RUN python3.8 -m pip install typing-extensions
 RUN python3.8 -m pip install --upgrade setuptools
 RUN python3.8 -m pip install gradio --no-cache-dir
+RUN python3.8 -m pip install cython
 RUN python3.8 -m pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
