@@ -16,7 +16,7 @@ USER admin
 ENV HOME=/home/user \
 	PATH=/home/user/.local/bin:$PATH
 
-RUN curl https://pyenv.run | bash
+RUN sudo curl https://pyenv.run | bash
 ENV PATH=$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH
 RUN pyenv install 3.8.15 && \
     pyenv global 3.8.15 && \
