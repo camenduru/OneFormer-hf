@@ -5,7 +5,7 @@ torchaudio==0.9.0
 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.9/index.html
 detectron2==0.6
 opencv-python
-git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
+git+https://github.com/cocodataset/panopticapi.git
 git+https://github.com/mcordts/cityscapesScripts.git
 imutils
 -f https://shi-labs.com/natten/wheels/cu111/torch1.9/index.html
