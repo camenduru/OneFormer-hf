@@ -16,7 +16,7 @@ RUN apt install -y software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get -y install python3.9
 RUN apt-get -y install python3-pip
-RUN apt install python3.9-distutils
+RUN apt install -y python3.9-distutils
 
 RUN useradd -ms /bin/bash admin
 USER admin
