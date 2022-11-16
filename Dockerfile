@@ -26,7 +26,7 @@ RUN pyenv install 3.8.15 && \
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
 RUN chown -R user:user $WORKDIR
-RUN chmod 755 $WORKDIR
+RUN chmod 777 $WORKDIR
 
 
 COPY requirements.txt $WORKDIR/requirements.txt
@@ -37,7 +37,8 @@ COPY . .
 
 ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 
-RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/oneformer/ install --user && cd ..
+USER user
+RUN ln -s ./oneformer/modeling/pixel_decoder/ops/ ./ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
 
 RUN sh deform_setup.sh
 
