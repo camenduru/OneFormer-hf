@@ -28,7 +28,7 @@ WORKDIR $WORKDIR
 RUN chown -R admin:admin $WORKDIR
 RUN chmod 755 $WORKDIR
 
-RUN nvidia-smi
+# RUN nvidia-smi
 
 
 COPY requirements.txt $WORKDIR/requirements.txt
