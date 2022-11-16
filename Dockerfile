@@ -10,12 +10,12 @@ RUN apt-get update && apt-get install -y \
     	ffmpeg libsm6 libxext6 cmake libgl1-mesa-glx \
 		&& rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/bash admin
-USER admin
-
 RUN apt-get -y update
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
+
+RUN useradd -ms /bin/bash admin
+USER admin
 
 # ENV HOME=/home/user \
 # 	PATH=/home/user/.local/bin:$PATH
