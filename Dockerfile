@@ -37,7 +37,7 @@ RUN pyenv install 3.8.15 && \
 
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
-RUN chown -R admin:admin $WORKDIR
+RUN chown -R user:user $WORKDIR
 RUN chmod 755 $WORKDIR
 
 # RUN nvidia-smi
