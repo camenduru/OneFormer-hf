@@ -1,8 +1,27 @@
-FROM python:3.8.15
-FROM nvidia/cuda:11.4-cudnn8-runtime-ubuntu18.04
+FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu18.04
 CMD nvidia-smi
 
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get install -y \
+        git \
+        make build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev  \
+    	ffmpeg libsm6 libxext6 cmake libgl1-mesa-glx \
+		&& rm -rf /var/lib/apt/lists/*
+
 RUN useradd -ms /bin/bash admin
+USER admin
+
+ENV HOME=/home/user \
+	PATH=/home/user/.local/bin:$PATH
+
+RUN curl https://pyenv.run | bash
+ENV PATH=$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH
+RUN pyenv install 3.8.15 && \
+    pyenv global 3.8.15 && \
+    pyenv rehash && \
+    pip install --no-cache-dir --upgrade pip setuptools wheel
 
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
@@ -11,8 +30,11 @@ RUN chmod 755 $WORKDIR
 
 RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6  -y
+RUN nvidia-smi
+
 
 COPY requirements.txt $WORKDIR/requirements.txt
+COPY oneformer $WORKDIR/oneformer
 
 RUN pip install gradio --no-cache-dir
 RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
@@ -21,8 +43,6 @@ COPY . .
 
 RUN pwd
 RUN ls
-
-COPY oneformer $WORKDIR/oneformer
 
 RUN sh deform_setup.sh
 
