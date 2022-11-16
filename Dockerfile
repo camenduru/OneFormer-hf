@@ -1,4 +1,6 @@
 FROM python:3.8.15
+FROM nvidia/cuda:11.4-cudnn8-runtime-ubuntu18.04
+CMD nvidia-smi
 
 RUN useradd -ms /bin/bash admin
 
