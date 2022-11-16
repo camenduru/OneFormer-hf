@@ -38,7 +38,7 @@ RUN chmod 755 $WORKDIR
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
 
-RUN python -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade pip
 RUN pip3 install multidict
 RUN pip3 install typing-extensions
 RUN pip3 install gradio --no-cache-dir
