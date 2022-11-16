@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 # USER admin
 
 RUN useradd -ms /bin/bash user
-USER admin
+USER user
 
 ENV HOME=/home/user \
 	PATH=/home/user/.local/bin:$PATH
@@ -63,7 +63,7 @@ RUN ls
 
 RUN sh deform_setup.sh
 
-USER admin
+USER user
 
 EXPOSE 7860
 
