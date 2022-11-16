@@ -40,12 +40,12 @@ RUN chmod 755 $WORKDIR
 
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
-RUN python3 --version
-RUN python3 -m pip install --upgrade pip
-RUN pip3 install multidict
-RUN pip3 install typing-extensions
-RUN pip3 install gradio --no-cache-dir
-RUN pip3 install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
+RUN python3.9 --version
+RUN python3.9 -m pip install --upgrade pip
+RUN python3.9 -m pip install multidict
+RUN python3.9 -m pip install typing-extensions
+RUN python3.9 -m pip install gradio --no-cache-dir
+RUN python3.9 -m pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
 COPY . .
 
@@ -58,4 +58,4 @@ USER admin
 
 EXPOSE 7860
 
-ENTRYPOINT ["python3", "gradio_app.py"]
+ENTRYPOINT ["python3.9", "gradio_app.py"]
