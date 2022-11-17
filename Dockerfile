@@ -47,8 +47,8 @@ RUN sh deform_setup.sh
 USER user
 RUN sh deform_setup.sh
 
-# USER user
+USER user
 
-# EXPOSE 7860
+EXPOSE 7860
 
-# ENTRYPOINT ["python", "gradio_app.py"]
+ENTRYPOINT ["python", "gradio_app.py"]
