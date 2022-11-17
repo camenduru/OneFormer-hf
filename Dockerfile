@@ -10,16 +10,11 @@ RUN apt-get update && apt-get install -y \
     	ffmpeg libsm6 libxext6 cmake libgl1-mesa-glx \
 		&& rm -rf /var/lib/apt/lists/*
 
-# RUN useradd -ms /bin/bash user
-# USER user
+RUN useradd -ms /bin/bash user
+USER user
 
-USER root
-
-# ENV HOME=/home/user \
-# 	PATH=/home/user/.local/bin:$PATH
-
-ENV HOME=/home/root \
-	PATH=/home/root/.local/bin:$PATH
+ENV HOME=/home/user \
+	PATH=/home/user/.local/bin:$PATH
 
 RUN curl https://pyenv.run | bash
 ENV PATH=$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH
@@ -30,8 +25,7 @@ RUN pyenv install 3.8.15 && \
 
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
-# RUN chown -R user:user $WORKDIR
-RUN chown -R root:root $WORKDIR
+RUN chown -R user:user $WORKDIR
 RUN chmod -R 755 $WORKDIR
 
 
@@ -46,15 +40,15 @@ ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 
 RUN pip install ninja
 
-USER root
+USER user
 RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build install --user && cd ..
 
 RUN sh deform_setup.sh
 
-USER root
+USER user
 RUN sh deform_setup.sh
 
-USER root
+USER user
 
 EXPOSE 7860
 
