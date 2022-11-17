@@ -178,9 +178,9 @@ description = "<p style='color: #E0B941; font-size: 16px; font-weight: w600; tex
 # setup_predictors()
 
 gradio_inputs = [gr.Image(source="upload", tool=None, label="Input Image",type="filepath"),
-            gr.inputs.Radio(choices=["the task is panoptic" ,"the task is instance", "the task is semantic"], type="value", default="the task is panoptic", label="Task Token Input"),
-            gr.inputs.Radio(choices=["COCO (133 classes)" ,"Cityscapes (19 classes)", "ADE20K (150 classes)"], type="value", default="Cityscapes (19 classes)", label="Model"),
-            gr.inputs.Radio(choices=["DiNAT-L" ,"Swin-L"], type="value", default="DiNAT-L", label="Backbone"),
+            gr.Radio(choices=["the task is panoptic" ,"the task is instance", "the task is semantic"], type="value", value="the task is panoptic", label="Task Token Input"),
+            gr.Radio(choices=["COCO (133 classes)" ,"Cityscapes (19 classes)", "ADE20K (150 classes)"], type="value", value="Cityscapes (19 classes)", label="Model"),
+            gr.Radio(choices=["DiNAT-L" ,"Swin-L"], type="value", value="DiNAT-L", label="Backbone"),
             ]
 gradio_outputs = [gr.Image(type="pil", label="Segmentation Overlay"), gr.Image(type="pil", label="Segmentation Map")]
 
