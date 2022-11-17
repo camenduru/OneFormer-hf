@@ -1,7 +1,4 @@
-import subprocess
 import torch
-if torch.cuda.is_available():
-   subprocess.run('sh deform_setup.sh', shell=True)
 
 print("Installed the dependencies!")
 

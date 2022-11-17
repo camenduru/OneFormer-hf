@@ -40,7 +40,7 @@ import torch
 @lru_cache()
 def default_bpe():
     url = 'https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz'
-    wget.download(url, os.path.dirname(os.path.abspath(__file__)))
+    wget.download(url, out=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz'))
     # inmemory = StringIO(urlopen(url).read())
     # return inmemory
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz')
@@ -129,9 +129,10 @@ class SimpleTokenizer(object):
     def __init__(self, bpe_path: str = default_bpe()):
         self.byte_encoder = bytes_to_unicode()
         self.byte_decoder = {v: k for k, v in self.byte_encoder.items()}
-        
-        # merges = gzip.GzipFile(fileobj=bpe_path, mode='rb')
-        
+
+        print("-----------\n")
+        print(bpe_path)
+        print("-----------\n")
         merges = gzip.open(bpe_path).read().decode('utf-8').split('\n')
         merges = merges[1:49152 - 256 - 2 + 1]
         merges = [tuple(merge.split()) for merge in merges]
