@@ -55,7 +55,8 @@ RUN sh deform_setup.sh
 
 RUN ls
 RUN pwd
-COPY /home/user/oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
+RUN locate oneformer/
+# COPY /home/user/oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
 
 USER user
 
