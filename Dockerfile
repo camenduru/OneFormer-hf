@@ -1,5 +1,5 @@
 FROM nvidia/cuda:11.3.1-cudnn8-devel-ubuntu18.04
-CMD nvidia-smi
+CMD sh deform_setup.sh
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
@@ -41,7 +41,7 @@ ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 RUN pip install ninja
 
 USER user
-RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build install --user && cd ..
+RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 pip install --user --ignore-installed . && cd ..
 RUN sh deform_setup.sh
 
 USER user
