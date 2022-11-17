@@ -26,7 +26,7 @@ RUN pyenv install 3.8.15 && \
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
 RUN chown -R user:user $WORKDIR
-RUN chmod -R 755 $WORKDIR
+RUN chmod -R 777 $WORKDIR
 
 
 COPY requirements.txt $WORKDIR/requirements.txt
@@ -41,8 +41,8 @@ ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 RUN pip install ninja
 
 USER user
-RUN chmod -R 755 $HOME/.pyenv
-RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py develop --build-base=$WORKDIR/ install --user && cd ..
+RUN chmod -R 777 $HOME/.pyenv
+RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
 RUN sh deform_setup.sh
 
 USER user
