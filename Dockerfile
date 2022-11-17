@@ -46,6 +46,9 @@ RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd o
 RUN sh deform_setup.sh
 
 USER user
+RUN sh deform_setup.sh
+
+USER user
 
 EXPOSE 7860
 
