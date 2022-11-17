@@ -31,7 +31,7 @@ RUN chmod -R 777 $WORKDIR
 
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY . .
-RUN cd $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz && wget https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz && ls && cd $WORKDIR
+# RUN cd $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz && wget https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz && ls && cd $WORKDIR
 
 RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
