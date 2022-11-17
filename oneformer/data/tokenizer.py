@@ -24,7 +24,6 @@
 # Modified by Jiarui Xu
 # -------------------------------------------------------------------------
 
-import wget
 import gzip
 import html
 import os
@@ -37,9 +36,7 @@ import torch
 
 @lru_cache()
 def default_bpe():
-    url = 'https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz'
-    wget.download(url, out=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz'))
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz')
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt')
 
 @lru_cache()
 def bytes_to_unicode():
@@ -124,7 +121,15 @@ class SimpleTokenizer(object):
     def __init__(self, bpe_path: str = default_bpe()):
         self.byte_encoder = bytes_to_unicode()
         self.byte_decoder = {v: k for k, v in self.byte_encoder.items()}
-        merges = gzip.open(bpe_path).read().decode('utf-8').split('\n')
+        
+        with open(bpe_path) as f:
+            contents = f.readlines()
+        merges = []
+        for cnt in contents:
+            merges.append(cnt.split('\n')[0])
+        merges.append("")
+        
+        # merges = gzip.open(bpe_path).read().decode('utf-8').split('\n')
         merges = merges[1:49152 - 256 - 2 + 1]
         merges = [tuple(merge.split()) for merge in merges]
         vocab = list(bytes_to_unicode().values())
