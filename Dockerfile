@@ -33,7 +33,8 @@ COPY requirements.txt $WORKDIR/requirements.txt
 COPY . .
 RUN ls
 RUN pwd
-COPY ./oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
+RUN wget https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz
+# COPY ./oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
 
 # RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
