@@ -37,8 +37,8 @@ import torch
 
 @lru_cache()
 def default_bpe():
-    # url = 'https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz'
-    # wget.download(url, out=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz'))
+    url = 'https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz'
+    wget.download(url, out=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz'))
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bpe_simple_vocab_16e6.txt.gz')
 
 @lru_cache()
