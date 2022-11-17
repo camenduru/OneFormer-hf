@@ -77,11 +77,11 @@ PREDICTORS = {
     }
 }
 
-def setup_predictors():
-    for dataset in ["Cityscapes (19 classes)", "COCO (133 classes)", "ADE20K (150 classes)"]:
-        for backbone in ["DiNAT-L", "Swin-L"]:
-            cfg = setup_cfg(dataset, backbone)
-            PREDICTORS[backbone][dataset] = DefaultPredictor(cfg)
+# def setup_predictors():
+#     for dataset in ["Cityscapes (19 classes)", "COCO (133 classes)", "ADE20K (150 classes)"]:
+#         for backbone in ["DiNAT-L", "Swin-L"]:
+#             cfg = setup_cfg(dataset, backbone)
+#             PREDICTORS[backbone][dataset] = DefaultPredictor(cfg)
 
 def setup_cfg(dataset, backbone):
     # load config from file and command-line arguments
@@ -104,8 +104,8 @@ def setup_cfg(dataset, backbone):
 
 def setup_modules(dataset, backbone):
     cfg = setup_cfg(dataset, backbone)
-    # predictor = DefaultPredictor(cfg)
-    predictor = PREDICTORS[backbone][dataset]
+    predictor = DefaultPredictor(cfg)
+    # predictor = PREDICTORS[backbone][dataset]
     metadata = MetadataCatalog.get(
         cfg.DATASETS.TEST_PANOPTIC[0] if len(cfg.DATASETS.TEST_PANOPTIC) else "__unused"
     )
@@ -175,7 +175,7 @@ description = "<p style='color: #E0B941; font-size: 16px; font-weight: w600; tex
 
 # css = ".image-preview {height: 32rem; width: auto;} .output-image {height: 32rem; width: auto;} .panel-buttons { display: flex; flex-direction: row;}"
 
-setup_predictors()
+# setup_predictors()
 
 gradio_inputs = [gr.Image(source="upload", tool=None, label="Input Image",type="filepath"),
             gr.inputs.Radio(choices=["the task is panoptic" ,"the task is instance", "the task is semantic"], type="value", default="the task is panoptic", label="Task Token Input"),
