@@ -10,11 +10,16 @@ RUN apt-get update && apt-get install -y \
     	ffmpeg libsm6 libxext6 cmake libgl1-mesa-glx \
 		&& rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/bash user
-USER user
+# RUN useradd -ms /bin/bash user
+# USER user
 
-ENV HOME=/home/user \
-	PATH=/home/user/.local/bin:$PATH
+USER root
+
+# ENV HOME=/home/user \
+# 	PATH=/home/user/.local/bin:$PATH
+
+ENV HOME=/home/root \
+	PATH=/home/root/.local/bin:$PATH
 
 RUN curl https://pyenv.run | bash
 ENV PATH=$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH
@@ -25,7 +30,8 @@ RUN pyenv install 3.8.15 && \
 
 ENV WORKDIR=/code
 WORKDIR $WORKDIR
-RUN chown -R user:user $WORKDIR
+# RUN chown -R user:user $WORKDIR
+RUN chown -R root:root $WORKDIR
 RUN chmod -R 755 $WORKDIR
 
 
@@ -45,10 +51,10 @@ RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd o
 
 RUN sh deform_setup.sh
 
-USER user
+USER root
 RUN sh deform_setup.sh
 
-USER user
+USER root
 
 EXPOSE 7860
 
