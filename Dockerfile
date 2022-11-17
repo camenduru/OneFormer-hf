@@ -57,7 +57,7 @@ RUN sh deform_setup.sh
 RUN mkdir -p examples
 RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/ade20k.jpeg -P $WORKDIR/examples/
 RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/cityscapes.png -P $WORKDIR/examples/
-RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/coco.jpg -P $WORKDIR/examples/
+RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/coco.jpeg -P $WORKDIR/examples/
 
 USER user
 
