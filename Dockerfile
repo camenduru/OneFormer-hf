@@ -41,15 +41,14 @@ ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 RUN pip install ninja
 
 USER user
-RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build install --user && cd ..
-
+RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
 RUN sh deform_setup.sh
 
 USER user
 RUN sh deform_setup.sh
 
-USER user
+# USER user
 
-EXPOSE 7860
+# EXPOSE 7860
 
-ENTRYPOINT ["python", "gradio_app.py"]
+# ENTRYPOINT ["python", "gradio_app.py"]
