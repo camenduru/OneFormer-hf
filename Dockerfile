@@ -34,29 +34,29 @@ COPY . .
 RUN ls
 RUN pwd
 RUN wget https://github.com/SHI-Labs/OneFormer/blob/main/oneformer/data/bpe_simple_vocab_16e6.txt.gz
-# COPY ./oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
+COPY bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
 
-# RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
-# ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
+ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 
 
-# RUN pip install ninja
+RUN pip install ninja
 
-# USER root
-# RUN chown -R user:user /usr
-# RUN chmod -R 777 /usr
-# RUN chown -R user:user $HOME
-# RUN chmod -R 777 $HOME
-# RUN chown -R user:user $WORKDIR
-# RUN chmod -R 777 $WORKDIR
+USER root
+RUN chown -R user:user /usr
+RUN chmod -R 777 /usr
+RUN chown -R user:user $HOME
+RUN chmod -R 777 $HOME
+RUN chown -R user:user $WORKDIR
+RUN chmod -R 777 $WORKDIR
 
-# USER user
-# RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
-# RUN sh deform_setup.sh
+USER user
+RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
+RUN sh deform_setup.sh
 
-# USER user
-# RUN sh deform_setup.sh
+USER user
+RUN sh deform_setup.sh
 
 USER user
 
