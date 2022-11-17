@@ -28,12 +28,14 @@ WORKDIR $WORKDIR
 RUN chown -R user:user $WORKDIR
 RUN chmod -R 777 $WORKDIR
 
+
+COPY requirements.txt $WORKDIR/requirements.txt
+COPY . .
 RUN ls
 RUN pwd
-COPY /app/oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
-# COPY requirements.txt $WORKDIR/requirements.txt
+COPY ./oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
+
 # RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
-# COPY . .
 
 # ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 
