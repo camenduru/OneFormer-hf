@@ -40,7 +40,6 @@ ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 USER user
 RUN pip install ninja
 RUN chown -R user:user $HOME
-RUN chmod -R 755 $HOME
 RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
 
 RUN sh deform_setup.sh
