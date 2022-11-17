@@ -32,7 +32,6 @@ RUN chmod -R 777 $WORKDIR
 COPY requirements.txt $WORKDIR/requirements.txt
 COPY oneformer $WORKDIR/oneformer
 RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
-
 COPY . .
 
 ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
@@ -54,6 +53,8 @@ RUN sh deform_setup.sh
 
 USER user
 RUN sh deform_setup.sh
+
+COPY oneformer/data/bpe_simple_vocab_16e6.txt.gz $WORKDIR/oneformer/data/bpe_simple_vocab_16e6.txt.gz
 
 USER user
 
