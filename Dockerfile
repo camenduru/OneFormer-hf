@@ -30,18 +30,15 @@ RUN chmod -R 777 $WORKDIR
 
 COPY requirements.txt $WORKDIR/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
+RUN pip install ninja
 
 COPY . .
 
 ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 
-RUN pip install ninja
-
 USER root
 RUN chown -R user:user $HOME
 RUN chmod -R 777 $HOME
-RUN chown -R user:user $WORKDIR
-RUN chmod -R 777 $WORKDIR
 
 USER user
 RUN ln -s $WORKDIR/oneformer/modeling/pixel_decoder/ops/ $WORKDIR/ && ls && cd ops/ && FORCE_CUDA=1 python setup.py build --build-base=$WORKDIR/ install --user && cd ..
