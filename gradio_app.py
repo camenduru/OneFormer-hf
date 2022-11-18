@@ -77,11 +77,32 @@ PREDICTORS = {
     }
 }
 
-# def setup_predictors():
-#     for dataset in ["Cityscapes (19 classes)", "COCO (133 classes)", "ADE20K (150 classes)"]:
-#         for backbone in ["DiNAT-L", "Swin-L"]:
-#             cfg = setup_cfg(dataset, backbone)
-#             PREDICTORS[backbone][dataset] = DefaultPredictor(cfg)
+METADATA = {
+    "DiNAT-L": {
+        "Cityscapes (19 classes)": None,
+        "COCO (133 classes)": None,
+        "ADE20K (150 classes)": None
+    },
+    "Swin-L": {
+        "Cityscapes (19 classes)": None,
+        "COCO (133 classes)": None,
+        "ADE20K (150 classes)": None
+    }
+}
+
+def setup_modules():
+    for dataset in ["Cityscapes (19 classes)", "COCO (133 classes)", "ADE20K (150 classes)"]:
+        for backbone in ["DiNAT-L", "Swin-L"]:
+            cfg = setup_cfg(dataset, backbone)
+            metadata = MetadataCatalog.get(
+            cfg.DATASETS.TEST_PANOPTIC[0] if len(cfg.DATASETS.TEST_PANOPTIC) else "__unused"
+            )
+            if 'cityscapes_fine_sem_seg_val' in cfg.DATASETS.TEST_PANOPTIC[0]:
+                from cityscapesscripts.helpers.labels import labels
+                stuff_colors = [k.color for k in labels if k.trainId != 255]
+                metadata = metadata.set(stuff_colors=stuff_colors)
+            PREDICTORS[backbone][dataset] = DefaultPredictor(cfg)
+            METADATA[backbone][dataset] = metadata
 
 def setup_cfg(dataset, backbone):
     # load config from file and command-line arguments
@@ -102,19 +123,19 @@ def setup_cfg(dataset, backbone):
     cfg.freeze()
     return cfg
 
-def setup_modules(dataset, backbone):
-    cfg = setup_cfg(dataset, backbone)
-    predictor = DefaultPredictor(cfg)
-    # predictor = PREDICTORS[backbone][dataset]
-    metadata = MetadataCatalog.get(
-        cfg.DATASETS.TEST_PANOPTIC[0] if len(cfg.DATASETS.TEST_PANOPTIC) else "__unused"
-    )
-    if 'cityscapes_fine_sem_seg_val' in cfg.DATASETS.TEST_PANOPTIC[0]:
-        from cityscapesscripts.helpers.labels import labels
-        stuff_colors = [k.color for k in labels if k.trainId != 255]
-        metadata = metadata.set(stuff_colors=stuff_colors)
+# def setup_modules(dataset, backbone):
+#     cfg = setup_cfg(dataset, backbone)
+#     predictor = DefaultPredictor(cfg)
+#     # predictor = PREDICTORS[backbone][dataset]
+#     metadata = MetadataCatalog.get(
+#         cfg.DATASETS.TEST_PANOPTIC[0] if len(cfg.DATASETS.TEST_PANOPTIC) else "__unused"
+#     )
+#     if 'cityscapes_fine_sem_seg_val' in cfg.DATASETS.TEST_PANOPTIC[0]:
+#         from cityscapesscripts.helpers.labels import labels
+#         stuff_colors = [k.color for k in labels if k.trainId != 255]
+#         metadata = metadata.set(stuff_colors=stuff_colors)
     
-    return predictor, metadata
+#     return predictor, metadata
 
 def panoptic_run(img, predictor, metadata):
     visualizer = Visualizer(img[:, :, ::-1], metadata=metadata, instance_mode=ColorMode.IMAGE)
@@ -153,7 +174,9 @@ def semantic_run(img, predictor, metadata):
 TASK_INFER = {"the task is panoptic": panoptic_run, "the task is instance": instance_run, "the task is semantic": semantic_run}
 
 def segment(path, task, dataset, backbone):
-    predictor, metadata = setup_modules(dataset, backbone)
+    # predictor, metadata = setup_modules(dataset, backbone)
+    predictor = PREDICTORS[backbone][dataset]
+    metadata = METADATA[backbone][dataset]
     img = cv2.imread(path)
     width = WIDTH_DICT[KEY_DICT[dataset]]
     img = imutils.resize(img, width=width)
@@ -175,7 +198,7 @@ description = "<p style='color: #E0B941; font-size: 16px; font-weight: w600; tex
 
 # css = ".image-preview {height: 32rem; width: auto;} .output-image {height: 32rem; width: auto;} .panel-buttons { display: flex; flex-direction: row;}"
 
-# setup_predictors()
+setup_modules()
 
 gradio_inputs = [gr.Image(source="upload", tool=None, label="Input Image",type="filepath"),
             gr.Radio(choices=["the task is panoptic" ,"the task is instance", "the task is semantic"], type="value", value="the task is panoptic", label="Task Token Input"),
