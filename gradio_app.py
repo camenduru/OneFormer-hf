@@ -189,10 +189,10 @@ title = "OneFormer: One Transformer to Rule Universal Image Segmentation"
 
 description = "<p style='color: #E0B941; font-size: 16px; font-weight: w600; text-align: center'> <a style='color: #E0B941;' href='https://praeclarumjj3.github.io/oneformer/' target='_blank'>Project Page</a> | <a style='color: #E0B941;' href='https://arxiv.org/abs/2211.06220' target='_blank'>OneFormer: One Transformer to Rule Universal Image Segmentation</a> | <a style='color: #E0B941;' href='https://github.com/SHI-Labs/OneFormer' target='_blank'>Github</a></p>" \
             + "<p style='color:royalblue; margin: 10px; font-size: 16px; font-weight: w400;'>  \
-                [Note: Inference on CPU may take upto 2 minutes.] This is the official gradio demo for our paper <span style='color:#E0B941;'>OneFormer: One Transformer to Rule Universal Image Segmentation</span> To use OneFormer: <br> \
+                [Note: Inference on CPU may take upto 2 minutes.] This is the official gradio demo for our paper <span style='color:#E0B941;'>OneFormer: One Transformer to Rule Universal Image Segmentation</span> To use <span style='color:#E0B941;'>OneFormer</span>: <br> \
                 (1) <span style='color:#E0B941;'>Upload an Image</span> or <span style='color:#E0B941;'> select a sample image from the examples</span> <br>  \
-                (2) Select the value of the <span style='color:#E0B941;'>Task Token Input</span> <br>\
-                (3) Select the <span style='color:#E0B941;'>Model</span> </p>"
+                (2) Select the value of the <span style='color:#E0B941;'>Task Token Input</span>. <br>\
+                (3) Select the <span style='color:#E0B941;'>Model</span> and <span style='color:#E0B941;'>Backbone</span>. </p>"
 
 # article = 
 

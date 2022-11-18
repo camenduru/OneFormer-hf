@@ -28,7 +28,6 @@ WORKDIR $WORKDIR
 RUN chown -R user:user $WORKDIR
 RUN chmod -R 777 $WORKDIR
 
-
 COPY requirements.txt $WORKDIR/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r $WORKDIR/requirements.txt
 
@@ -39,8 +38,6 @@ ARG TORCH_CUDA_ARCH_LIST=7.5+PTX
 RUN pip install ninja
 
 USER root
-# RUN chown -R user:user /usr
-# RUN chmod -R 777 /usr
 RUN chown -R user:user $HOME
 RUN chmod -R 777 $HOME
 RUN chown -R user:user $WORKDIR
@@ -54,9 +51,9 @@ USER user
 RUN sh deform_setup.sh
 
 RUN mkdir -p examples
-RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/ade20k.jpeg -P $WORKDIR/examples/
-RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/cityscapes.png -P $WORKDIR/examples/
-RUN wget https://github.com/SHI-Labs/OneFormer-Colab/blob/master/samples/coco.jpeg -P $WORKDIR/examples/
+RUN wget https://praeclarumjj3.github.io/files/ade20k.jpeg -P $WORKDIR/examples/
+RUN wget https://praeclarumjj3.github.io/files/cityscapes.png -P $WORKDIR/examples/
+RUN wget https://praeclarumjj3.github.io/files/coco.jpeg -P $WORKDIR/examples/
 
 USER user
 
