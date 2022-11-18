@@ -187,12 +187,19 @@ def segment(path, task, dataset, backbone):
 
 title = "OneFormer: One Transformer to Rule Universal Image Segmentation"
 
-description = "<p style='color: #E0B941; font-size: 16px; font-weight: w600; text-align: center'> <a style='color: #E0B941;' href='https://praeclarumjj3.github.io/oneformer/' target='_blank'>Project Page</a> | <a style='color: #E0B941;' href='https://arxiv.org/abs/2211.06220' target='_blank'>OneFormer: One Transformer to Rule Universal Image Segmentation</a> | <a style='color: #E0B941;' href='https://github.com/SHI-Labs/OneFormer' target='_blank'>Github</a></p>" \
-            + "<p style='color:royalblue; margin: 10px; font-size: 16px; font-weight: w400;'>  \
-                [Note: Inference on CPU may take upto 2 minutes.] This is the official gradio demo for our paper <span style='color:#E0B941;'>OneFormer: One Transformer to Rule Universal Image Segmentation</span> To use <span style='color:#E0B941;'>OneFormer</span>: <br> \
-                (1) <span style='color:#E0B941;'>Upload an Image</span> or <span style='color:#E0B941;'> select a sample image from the examples</span> <br>  \
-                (2) Select the value of the <span style='color:#E0B941;'>Task Token Input</span>. <br>\
-                (3) Select the <span style='color:#E0B941;'>Model</span> and <span style='color:#E0B941;'>Backbone</span>. </p>"
+description = "<p font-size: 16px; font-weight: w600; text-align: center'> <a href='https://praeclarumjj3.github.io/oneformer/' target='_blank'>Project Page</a> | <a href='https://arxiv.org/abs/2211.06220' target='_blank'>ArXiv Paper</a> | <a href='https://github.com/SHI-Labs/OneFormer' target='_blank'>Github Repo</a></p>" \
+            + "<p font-size: 12px; text-align: center' margin: 10px font-weight: w300; text-align: center'> <a href='https://chrisjuniorli.github.io/' target='_blank'>Jiachen Li<sup>*</sup></a> <a href='https://www.linkedin.com/in/mtchiu/' target='_blank'>MangTik Chiu<sup>*</sup></a> <a href='https://alihassanijr.com/' target='_blank'>Ali Hassani</a> <a href='https://www.linkedin.com/in/nukich74/' target='_blank'>Nikita Orlov</a> <a href='https://www.humphreyshi.com/home' target='_blank'>Humphrey Shi</a></p>" \
+            + "<p text-align: center; font-size: 14px; font-weight: w300;'>  \
+                OneFormer is the first multi-task universal image segmentation framework based on transformers. Our single OneFormer model achieves state-of-the-art performance across all three segmentation tasks with a single task-conditioned joint training process. OneFormer uses a task token to condition the model on the task in focus, making our architecture task-guided for training, and task-dynamic for inference, all with a single model. We believe OneFormer is a significant step towards making image segmentation more universal and accessible.\
+                </p>" \
+            + "<p text-align: center; font-size: 14px; font-weight: w300;'> [Note: Inference on CPU may take upto 2 minutes. On a single RTX A6000 GPU, OneFormer is able to inference at more than 15 FPS.</p>"
+
+# description = "<p style='color: #E0B941; font-size: 16px; font-weight: w600; text-align: center'> <a style='color: #E0B941;' href='https://praeclarumjj3.github.io/oneformer/' target='_blank'>Project Page</a> | <a style='color: #E0B941;' href='https://arxiv.org/abs/2211.06220' target='_blank'>OneFormer: One Transformer to Rule Universal Image Segmentation</a> | <a style='color: #E0B941;' href='https://github.com/SHI-Labs/OneFormer' target='_blank'>Github</a></p>" \
+#             + "<p style='color:royalblue; margin: 10px; font-size: 16px; font-weight: w400;'>  \
+#                 [Note: Inference on CPU may take upto 2 minutes.] This is the official gradio demo for our paper <span style='color:#E0B941;'>OneFormer: One Transformer to Rule Universal Image Segmentation</span> To use <span style='color:#E0B941;'>OneFormer</span>: <br> \
+#                 (1) <span style='color:#E0B941;'>Upload an Image</span> or <span style='color:#E0B941;'> select a sample image from the examples</span> <br>  \
+#                 (2) Select the value of the <span style='color:#E0B941;'>Task Token Input</span>. <br>\
+#                 (3) Select the <span style='color:#E0B941;'>Model</span> and <span style='color:#E0B941;'>Backbone</span>. </p>"
 
 # article = 
 
@@ -202,7 +209,7 @@ setup_modules()
 
 gradio_inputs = [gr.Image(source="upload", tool=None, label="Input Image",type="filepath"),
             gr.Radio(choices=["the task is panoptic" ,"the task is instance", "the task is semantic"], type="value", value="the task is panoptic", label="Task Token Input"),
-            gr.Radio(choices=["COCO (133 classes)" ,"Cityscapes (19 classes)", "ADE20K (150 classes)"], type="value", value="Cityscapes (19 classes)", label="Model"),
+            gr.Radio(choices=["COCO (133 classes)" ,"Cityscapes (19 classes)", "ADE20K (150 classes)"], type="value", value="COCO (133 classes)", label="Model"),
             gr.Radio(choices=["DiNAT-L" ,"Swin-L"], type="value", value="DiNAT-L", label="Backbone"),
             ]
 gradio_outputs = [gr.Image(type="pil", label="Segmentation Overlay"), gr.Image(type="pil", label="Segmentation Map")]
