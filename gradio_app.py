@@ -32,11 +32,11 @@ SWIN_CFG_DICT = {"cityscapes": "configs/cityscapes/oneformer_swin_large_IN21k_38
             "coco": "configs/coco/oneformer_swin_large_IN21k_384_bs16_100ep.yaml",
             "ade20k": "configs/ade20k/oneformer_swin_large_IN21k_384_bs16_160k.yaml",}
 
-SWIN_MODEL_DICT = {"cityscapes": hf_hub_download(repo_id="shi-labs/swin_l_oneformer_cityscapes", 
+SWIN_MODEL_DICT = {"cityscapes": hf_hub_download(repo_id="shi-labs/oneformer_cityscapes_swin_large", 
                                             filename="250_16_swin_l_oneformer_cityscapes_90k.pth"),
-              "coco": hf_hub_download(repo_id="shi-labs/swin_l_oneformer_coco", 
+              "coco": hf_hub_download(repo_id="shi-labs/oneformer_coco_swin_large", 
                                             filename="150_16_swin_l_oneformer_coco_100ep.pth"),
-              "ade20k": hf_hub_download(repo_id="shi-labs/swin_l_oneformer_ade20k", 
+              "ade20k": hf_hub_download(repo_id="shi-labs/oneformer_ade20k_swin_large", 
                                             filename="250_16_swin_l_oneformer_ade20k_160k.pth")
             }
 
@@ -44,11 +44,11 @@ DINAT_CFG_DICT = {"cityscapes": "configs/cityscapes/oneformer_dinat_large_bs16_9
             "coco": "configs/coco/oneformer_dinat_large_bs16_100ep.yaml",
             "ade20k": "configs/ade20k/oneformer_dinat_large_IN21k_384_bs16_160k.yaml",}
 
-DINAT_MODEL_DICT = {"cityscapes": hf_hub_download(repo_id="shi-labs/dinat_l_oneformer_cityscapes", 
+DINAT_MODEL_DICT = {"cityscapes": hf_hub_download(repo_id="shi-labs/oneformer_cityscapes_dinat_large", 
                                             filename="250_16_dinat_l_oneformer_cityscapes_90k.pth"),
-              "coco": hf_hub_download(repo_id="shi-labs/dinat_l_oneformer_coco", 
+              "coco": hf_hub_download(repo_id="shi-labs/oneformer_coco_dinat_large", 
                                             filename="150_16_dinat_l_oneformer_coco_100ep.pth"),
-              "ade20k": hf_hub_download(repo_id="shi-labs/dinat_l_oneformer_ade20k", 
+              "ade20k": hf_hub_download(repo_id="shi-labs/oneformer_ade20k_dinat_large", 
                                             filename="250_16_dinat_l_oneformer_ade20k_160k.pth")
             }
 
