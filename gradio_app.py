@@ -185,8 +185,8 @@ def segment(path, task, dataset, backbone):
     out_map = Image.fromarray(out_map.get_image())
     return out, out_map
 
-title = "<h1 style='margin-bottom: -10px; text-align: center'>OneFormer: One Transformer to Rule Universal Image Segmentation</h1>"
-
+title = "<h1 text-align: center'>OneFormer: One Transformer to Rule Universal Image Segmentation</h1>"
+# style='margin-bottom: -10px;
 description = "<p style='font-size: 14px; margin: 5px; font-weight: w300; text-align: center'> <a href='https://praeclarumjj3.github.io/' style='text-decoration:none' target='_blank'>Jitesh Jain, </a> <a href='https://chrisjuniorli.github.io/' style='text-decoration:none' target='_blank'>Jiachen Li<sup>*</sup>, </a> <a href='https://www.linkedin.com/in/mtchiu/' style='text-decoration:none' target='_blank'>MangTik Chiu<sup>*</sup>, </a> <a href='https://alihassanijr.com/' style='text-decoration:none' target='_blank'>Ali Hassani, </a> <a href='https://www.linkedin.com/in/nukich74/' style='text-decoration:none' target='_blank'>Nikita Orlov, </a> <a href='https://www.humphreyshi.com/home' style='text-decoration:none' target='_blank'>Humphrey Shi</a></p>" \
             + "<p style='font-size: 16px; margin: 5px; font-weight: w600; text-align: center'> <a href='https://praeclarumjj3.github.io/oneformer/' target='_blank'>Project Page</a> | <a href='https://arxiv.org/abs/2211.06220' target='_blank'>ArXiv Paper</a> | <a href='https://github.com/SHI-Labs/OneFormer' target='_blank'>Github Repo</a></p>" \
             + "<p style='text-align: center; margin: 5px; font-size: 14px; font-weight: w300;'>  \
