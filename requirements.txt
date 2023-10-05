@@ -31,5 +31,5 @@ gdown
 huggingface_hub
 pytorch_lightning
 tqdm
-gradio==3.1.4
+gradio
 wget
