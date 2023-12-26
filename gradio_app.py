@@ -216,4 +216,4 @@ iface = gr.Interface(fn=segment, inputs=gradio_inputs,
                      examples=examples, title=title,
                      description=description)
 
-iface.launch(enable_queue=True, server_name="0.0.0.0")
+iface.launch(enable_queue=True, server_name="0.0.0.0", share=True)
